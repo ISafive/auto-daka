@@ -18,11 +18,11 @@
  
  建议抓包获取！ios推荐使用stream，**记得安装https证书！！！**
  
- 安卓查看：[issues](https://github.com/EastItem/auto-daka/issues/4)
- 
  **简易流程为：先登录易班==》开始抓包==》打开易广金==》点击健康打卡==》结束抓包==》查看刚刚抓包历史记录==》找到请求链接为 https://ygj.gduf.edu.cn/Handler/device.ashx?flag=checkBindDevice 的请求==》复制请求头的User-Agent==》同时复制提交表单的内容**
  
-
+ 安卓查看：使用该软件：https://www.coolapk.com/apk/com.su.assistant.pro.free
+ 
+**简易流程为：打开上述软件==》系统一栏==》设备信息==》系统查看设备信息与useragent==Id查看 boot id并填入uuid的位置**
  
  获取请求头的UA以及提交的data表单信息。
  ```
@@ -43,6 +43,8 @@
    **v3.1 修复可能导致授权失败从而获取地址失败的问题**
    
    **v3.2 修复打卡失败**
+   
+   **v3.3采用资源协议自适配方案，关闭了verify参数
    
 
 ## 已知问题
