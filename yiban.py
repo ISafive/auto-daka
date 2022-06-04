@@ -143,18 +143,16 @@ class person:
                 'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
                 'Accept-Encoding': 'gzip, deflate, br',
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Origin": "https://ygj.gduf.edu.cn",
+                "Origin": "//ygj.gduf.edu.cn",
                 'User-Agent': self.UA,
                 'Connection': 'keep-alive',
                 "Referer":ygjhome
             }
-            notice=self.session.post(url='https://ygj.gduf.edu.cn/Handler/device.ashx?flag=getNotice',headers=header_api,data={'studentID':studentID}).json()
+                notice = self.session.post(url='//ygj.gduf.edu.cn/Handler/device.ashx?flag=getNotice',headers=header_api,data={'studentID':studentID},verify=False).json()
             print(notice)
-            
-           
 
             # 检查绑定设备
-            url_bind = "https://ygj.gduf.edu.cn/Handler/device.ashx?flag=checkBindDevice"
+            url_bind = "//ygj.gduf.edu.cn/Handler/device.ashx?flag=checkBindDevice"
             
             
             devicedata={
@@ -174,12 +172,12 @@ class person:
                 'Connection': 'keep-alive',
                 "Referer":ygjhome
             }
-            url_health='https://ygj.gduf.edu.cn/ygj/health/student-index.aspx'
+            url_health='//ygj.gduf.edu.cn/ygj/health/student-index.aspx'
             self.session.get(url=url_health,headers=header_html)
 
             #GetStudentInfo
             header_api['Referer']=url_health
-            self.session.post(url='https://ygj.gduf.edu.cn/Handler/health.ashx?flag=getStudentInfo',headers=header_api,data={"studentID":studentID})
+            self.session.post(url='//ygj.gduf.edu.cn/Handler/health.ashx?flag=getStudentInfo',headers=header_api,data={"studentID":studentID})
             
              # 获取历史打卡地址
             #if self.address=='自动':
@@ -188,14 +186,14 @@ class person:
                 return {'code': 555, 'msg': "获取地址失败！"}
             
             #进入今日打卡界面
-            url_today="https://ygj.gduf.edu.cn/ygj/health/student-add.aspx"
+            url_today="//ygj.gduf.edu.cn/ygj/health/student-add.aspx"
             header_html['Referer']=url_health
             self.session.get(url=url_today,headers=header_html)
             
             
             
             # 检查打卡记录 
-            url_check='https://ygj.gduf.edu.cn/Handler/health.ashx?flag=getHealth'
+            url_check='//ygj.gduf.edu.cn/Handler/health.ashx?flag=getHealth'
             check_header={
              'Host': 'ygj.gduf.edu.cn' ,
              'Accept': '*/*' ,
@@ -203,7 +201,7 @@ class person:
              'Accept-Language': 'zh-CN,zh-Hans;q=0.9' ,
              'Accept-Encoding': 'gzip, deflate, br' ,
              'Content-Type': 'application/x-www-form-urlencoded' ,
-             'Origin': 'https://ygj.gduf.edu.cn' ,
+             'Origin': '//ygj.gduf.edu.cn' ,
              'User-Agent': self.UA,
              'Connection': 'keep-alive' ,
              "Referer":url_today
@@ -220,7 +218,7 @@ class person:
             # 判断今日是否已打卡
             if True:
                 # 打卡
-                url_save = "https://ygj.gduf.edu.cn/Handler/health.ashx?flag=save"
+                url_save = "//ygj.gduf.edu.cn/Handler/health.ashx?flag=save"
                 save_headers = {
                     'Host': 'ygj.gduf.edu.cn',
                     'Accept': '*/*',
@@ -228,10 +226,10 @@ class person:
                     'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
                     'Accept-Encoding': 'gzip, deflate, br',
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Origin': 'https://ygj.gduf.edu.cn',
+                    'Origin': '//ygj.gduf.edu.cn',
                     'User-Agent': self.UA,
                     'Connection': 'keep-alive',
-                    "Referer":"https://ygj.gduf.edu.cn/ygj/health/student-add.aspx"
+                    "Referer":"//ygj.gduf.edu.cn/ygj/health/student-add.aspx"
                 }
                 data_yb_save = {
                     "studentID": studentID,
@@ -376,14 +374,14 @@ class person:
             "Accept-Language": "zh-CN,zh-Hans;q=0.9",
             "Accept-Encoding": "gzip, deflate, br",
             "Content-Type": "application/x-www-form-urlencoded",
-            "Origin": "https://ygj.gduf.edu.cn",
+            "Origin": "//ygj.gduf.edu.cn",
             "User-Agent": self.UA,
             "Connection": "keep-alive",
         }
         data = {
             "studentID": studentID
         }
-        res = self.session.post(url="https://ygj.gduf.edu.cn/Handler/health.ashx?flag=getHistoryList", data=data,
+        res = self.session.post(url="//ygj.gduf.edu.cn/Handler/health.ashx?flag=getHistoryList", data=data,
                                 headers=headers).json()
         # 查询成功
         if res['code'] == 0:
